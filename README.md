@@ -1,1 +1,1 @@
-# Bun.js-and-React
+# Blog page using Strapi and react js
