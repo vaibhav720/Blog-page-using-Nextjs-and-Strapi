@@ -8,5 +8,7 @@ const api = axios.create({
         Authorization:'Bearer '+process.env.BACKEND_API_KEY,
     }
 });
-
+// all categories
 export const fetchCategories = async()=> api.get('/api/categories');
+// all articles
+export const fetchArticles = async()=> api.get('/api/articles');

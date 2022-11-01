@@ -1,16 +1,16 @@
-/* eslint-disable react/jsx-no-target-blank */
-import React from "react";
+import React from 'react'
 import Link from "next/link";
+import IndexNavbar from "../../components/Navbars/IndexNavbar";
+import Footer from "../../components/Footers/Footer.js";
+import { fetchCategories } from 'api/api';
 
-import IndexNavbar from "components/Navbars/IndexNavbar.js";
-import Footer from "components/Footers/Footer.js";
-import { fetchArticles, fetchCategories } from "api/api";
 
-export default function Index({ categories, articles }) {
-  console.log("printing articles  ",articles.items)
+const category = ({categories}) => {
+    
   return (
-    <>
-      <IndexNavbar fixed categories={categories} />
+<>
+
+<IndexNavbar fixed  categories={categories}/>
       <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
         <div className="container mx-auto items-center flex flex-wrap">
           <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
@@ -46,7 +46,7 @@ export default function Index({ categories, articles }) {
           alt="..."
         />
       </section>
-      {/* after intro section begins here */}
+{/* after intro section begins here */}
       <section className="mt-48 md:mt-40 pb-40 relative bg-blueGray-100">
         <div
           className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
@@ -71,37 +71,37 @@ export default function Index({ categories, articles }) {
           <div className="flex flex-wrap items-center">
             {/* TODO: Important Card  */}
             <Link href="/register">
-              <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-32">
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blueGray-700 hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                  <img
-                    alt="..."
-                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
-                    className="w-full align-middle rounded-t-lg"
-                  />
-                  <blockquote className="relative p-8 mb-4">
-                    <svg
-                      preserveAspectRatio="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 583 95"
-                      className="absolute left-0 w-full block h-95-px -top-94-px"
-                    >
-                      <polygon
-                        points="-30,95 583,95 583,65"
-                        className="text-blueGray-700 fill-current"
-                      ></polygon>
-                    </svg>
-                    <h4 className="text-xl font-bold text-white">
-                      Great for your awesome project
-                    </h4>
-                    <p className="text-md font-light mt-2 text-white">
-                      Putting together a page has never been easier than
-                      matching together pre-made components. From landing pages
-                      presentation to login areas, you can easily customise and
-                      built your pages.
-                    </p>
-                  </blockquote>
-                </div>
+            <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-32">
+              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blueGray-700 hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
+                <img
+                  alt="..."
+                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
+                  className="w-full align-middle rounded-t-lg"
+                />
+                <blockquote className="relative p-8 mb-4">
+                  <svg
+                    preserveAspectRatio="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 583 95"
+                    className="absolute left-0 w-full block h-95-px -top-94-px"
+                  >
+                    <polygon
+                      points="-30,95 583,95 583,65"
+                      className="text-blueGray-700 fill-current"
+                    ></polygon>
+                  </svg>
+                  <h4 className="text-xl font-bold text-white">
+                    Great for your awesome project
+                  </h4>
+                  <p className="text-md font-light mt-2 text-white">
+                    Putting together a page has never been easier than matching
+                    together pre-made components. From landing pages
+                    presentation to login areas, you can easily customise and
+                    built your pages.
+                  </p>
+                </blockquote>
               </div>
+            </div>
             </Link>
 
             <div className="w-full md:w-6/12 px-4">
@@ -112,7 +112,9 @@ export default function Index({ categories, articles }) {
                       <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
                         <i className="fas fa-sitemap"></i>
                       </div>
-                      <h6 className="text-xl mb-1 font-semibold">Design</h6>
+                      <h6 className="text-xl mb-1 font-semibold">
+                        Design
+                      </h6>
                       <p className="mb-4 text-blueGray-500">
                         Notus NextJS comes with a huge number of Fully Coded CSS
                         components.
@@ -122,7 +124,7 @@ export default function Index({ categories, articles }) {
                   <div className="relative flex flex-col min-w-0">
                     <div className="px-4 py-5 flex-auto">
                       <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                        <i class="fas fa-duotone fa-car-battery"></i>
+                      <i class="fas fa-duotone fa-car-battery"></i>
                       </div>
                       <h6 className="text-xl mb-1 font-semibold">
                         Performance
@@ -138,11 +140,9 @@ export default function Index({ categories, articles }) {
                   <div className="relative flex flex-col min-w-0 mt-4">
                     <div className="px-4 py-5 flex-auto">
                       <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                        <i class="fas fa-solid fa-info"></i>
+                      <i class="fas fa-solid fa-info"></i>
                       </div>
-                      <h6 className="text-xl mb-1 font-semibold">
-                        Specification
-                      </h6>
+                      <h6 className="text-xl mb-1 font-semibold">Specification</h6>
                       <p className="mb-4 text-blueGray-500">
                         This extension also comes with 3 sample pages. They are
                         fully coded so you can start working instantly.
@@ -154,7 +154,9 @@ export default function Index({ categories, articles }) {
                       <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
                         <i className="fas fa-file-alt"></i>
                       </div>
-                      <h6 className="text-xl mb-1 font-semibold">Review</h6>
+                      <h6 className="text-xl mb-1 font-semibold">
+                        Review
+                      </h6>
                       <p className="mb-4 text-blueGray-500">
                         Built by developers for developers. You will love how
                         easy is to to work with Notus NextJS.
@@ -163,17 +165,18 @@ export default function Index({ categories, articles }) {
                   </div>
                 </div>
                 <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus?ref=nnjs-index"
-                  target="_blank"
-                  className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
-                >
-                  View More{" "}
-                  <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
-                </a>
+                href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus?ref=nnjs-index"
+                target="_blank"
+                className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
+              >
+                View More{" "}
+                <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
+              </a>
               </div>
             </div>
           </div>
         </div>
+
 
         <div className="container mx-auto px-4 pb-32 pt-48">
           <div className="items-center flex flex-wrap">
@@ -182,7 +185,9 @@ export default function Index({ categories, articles }) {
                 <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                   <i className="fas fa-file-alt text-xl"></i>
                 </div>
-                <h3 className="text-3xl font-semibold">Bugatti Bolide</h3>
+                <h3 className="text-3xl font-semibold">
+                  Bugatti Bolide
+                </h3>
                 <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
                   This extension comes a lot of fully coded examples that help
                   you get started faster. You can adjust the colors and also the
@@ -234,13 +239,13 @@ export default function Index({ categories, articles }) {
                   </li>
                 </ul>
                 <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus?ref=nnjs-index"
-                  target="_blank"
-                  className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
-                >
-                  View More{" "}
-                  <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
-                </a>
+                href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus?ref=nnjs-index"
+                target="_blank"
+                className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
+              >
+                View More{" "}
+                <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
+              </a>
               </div>
             </div>
 
@@ -276,106 +281,121 @@ export default function Index({ categories, articles }) {
             <div className="w-full lg:w-12/12 px-4  -mt-24">
               <div className="flex flex-wrap">
                 <div className="w-full lg:w-4/12 px-4">
-                  <Link href="/profile">
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blueGray-700 hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                      <img
-                        alt="..."
-                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
-                        className="w-full align-middle rounded-t-lg"
-                      />
-                      <blockquote className="relative p-8 mb-4">
-                        <svg
-                          preserveAspectRatio="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 583 95"
-                          className="absolute left-0 w-full block h-95-px -top-94-px"
-                        >
-                          <polygon
-                            points="-30,95 583,95 583,65"
-                            className="text-blueGray-700 fill-current"
-                          ></polygon>
-                        </svg>
-                        <h4 className="text-xl font-bold text-white">
-                          Great for your awesome project
-                        </h4>
-                        <p className="text-md font-light mt-2 text-white">
-                          Putting together a page has never been easier than
-                          matching together pre-made components. From landing
-                          pages presentation to login areas, you can easily
-                          customise and built your pages.
-                        </p>
-                      </blockquote>
-                    </div>
-                  </Link>
+                  
+                 
+                 <Link href="/profile">
+              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blueGray-700 hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
+                <img
+                  alt="..."
+                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
+                  className="w-full align-middle rounded-t-lg"
+                />
+                <blockquote className="relative p-8 mb-4">
+                  <svg
+                    preserveAspectRatio="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 583 95"
+                    className="absolute left-0 w-full block h-95-px -top-94-px"
+                  >
+                    <polygon
+                      points="-30,95 583,95 583,65"
+                      className="text-blueGray-700 fill-current"
+                    ></polygon>
+                  </svg>
+                  <h4 className="text-xl font-bold text-white">
+                    Great for your awesome project
+                  </h4>
+                  <p className="text-md font-light mt-2 text-white">
+                    Putting together a page has never been easier than matching
+                    together pre-made components. From landing pages
+                    presentation to login areas, you can easily customise and
+                    built your pages.
+                  </p>
+                </blockquote>
+              </div>
+              </Link>
+            
                 </div>
 
-                <div className="w-full lg:w-4/12 px-4">
-                  <Link href="/profile">
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blueGray-700 hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                      <img
-                        alt="..."
-                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
-                        className="w-full align-middle rounded-t-lg"
-                      />
-                      <blockquote className="relative p-8 mb-4">
-                        <svg
-                          preserveAspectRatio="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 583 95"
-                          className="absolute left-0 w-full block h-95-px -top-94-px"
-                        >
-                          <polygon
-                            points="-30,95 583,95 583,65"
-                            className="text-blueGray-700 fill-current"
-                          ></polygon>
-                        </svg>
-                        <h4 className="text-xl font-bold text-white">
-                          Great for your awesome project
-                        </h4>
-                        <p className="text-md font-light mt-2 text-white">
-                          Putting together a page has never been easier than
-                          matching together pre-made components. From landing
-                          pages presentation to login areas, you can easily
-                          customise and built your pages.
-                        </p>
-                      </blockquote>
-                    </div>
-                  </Link>
-                </div>
+
 
                 <div className="w-full lg:w-4/12 px-4">
+                  
+                 
                   <Link href="/profile">
-                    <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blueGray-700 hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                      <img
-                        alt="..."
-                        src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
-                        className="w-full align-middle rounded-t-lg"
-                      />
-                      <blockquote className="relative p-8 mb-4">
-                        <svg
-                          preserveAspectRatio="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 583 95"
-                          className="absolute left-0 w-full block h-95-px -top-94-px"
-                        >
-                          <polygon
-                            points="-30,95 583,95 583,65"
-                            className="text-blueGray-700 fill-current"
-                          ></polygon>
-                        </svg>
-                        <h4 className="text-xl font-bold text-white">
-                          Great for your awesome project
-                        </h4>
-                        <p className="text-md font-light mt-2 text-white">
-                          Putting together a page has never been easier than
-                          matching together pre-made components. From landing
-                          pages presentation to login areas, you can easily
-                          customise and built your pages.
-                        </p>
-                      </blockquote>
-                    </div>
-                  </Link>
+               <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blueGray-700 hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
+                 <img
+                   alt="..."
+                   src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
+                   className="w-full align-middle rounded-t-lg"
+                 />
+                 <blockquote className="relative p-8 mb-4">
+                   <svg
+                     preserveAspectRatio="none"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 583 95"
+                     className="absolute left-0 w-full block h-95-px -top-94-px"
+                   >
+                     <polygon
+                       points="-30,95 583,95 583,65"
+                       className="text-blueGray-700 fill-current"
+                     ></polygon>
+                   </svg>
+                   <h4 className="text-xl font-bold text-white">
+                     Great for your awesome project
+                   </h4>
+                   <p className="text-md font-light mt-2 text-white">
+                     Putting together a page has never been easier than matching
+                     together pre-made components. From landing pages
+                     presentation to login areas, you can easily customise and
+                     built your pages.
+                   </p>
+                 </blockquote>
+               </div>
+               </Link>
+             
+                 </div>
+
+
+
+                 <div className="w-full lg:w-4/12 px-4">
+                  
+                 
+                 <Link href="/profile">
+              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blueGray-700 hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
+                <img
+                  alt="..."
+                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
+                  className="w-full align-middle rounded-t-lg"
+                />
+                <blockquote className="relative p-8 mb-4">
+                  <svg
+                    preserveAspectRatio="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 583 95"
+                    className="absolute left-0 w-full block h-95-px -top-94-px"
+                  >
+                    <polygon
+                      points="-30,95 583,95 583,65"
+                      className="text-blueGray-700 fill-current"
+                    ></polygon>
+                  </svg>
+                  <h4 className="text-xl font-bold text-white">
+                    Great for your awesome project
+                  </h4>
+                  <p className="text-md font-light mt-2 text-white">
+                    Putting together a page has never been easier than matching
+                    together pre-made components. From landing pages
+                    presentation to login areas, you can easily customise and
+                    built your pages.
+                  </p>
+                </blockquote>
+              </div>
+              </Link>
+            
                 </div>
+
+
 
                 {/* <div className="w-full lg:w-4/12 px-4">
                   <h5 className="text-xl font-semibold pb-4 text-center">
@@ -484,10 +504,11 @@ export default function Index({ categories, articles }) {
                   😍
                 </span>
               </p>
-              <h3 className="font-semibold text-3xl">Do you love this ?</h3>
+              <h3 className="font-semibold text-3xl">
+                Do you love this ?
+              </h3>
               <p className="text-blueGray-500 text-lg leading-relaxed mt-4 mb-4">
-                Subscribe for pur news letters. Get monthly updates about new
-                cars.
+                Subscribe for pur news letters. Get monthly updates about new cars.
               </p>
               <div className="sm:block flex flex-col mt-10">
                 <a
@@ -497,6 +518,7 @@ export default function Index({ categories, articles }) {
                 >
                   Subscribe
                 </a>
+                
               </div>
               <div className="text-center mt-16"></div>
             </div>
@@ -505,13 +527,15 @@ export default function Index({ categories, articles }) {
       </section>
       <Footer />
     </>
-  );
+  )
 }
 
+
 export async function getServerSideProps() {
-  // Fetch data from external API
-  const { data: categories } = await fetchCategories();
-  const { data: articles } = await fetchArticles();
-  // Pass data to the page via props
-  return { props: { categories: { items: categories.data }, articles: {items:articles.data}} };
-}
+    // Fetch data from external API
+    const {data: categories}= await fetchCategories();
+      
+    // Pass data to the page via props
+    return { props: { categories:{ items:categories.data,} } }
+  }
+export default category
