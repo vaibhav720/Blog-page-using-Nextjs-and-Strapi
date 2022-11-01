@@ -4,11 +4,13 @@ import Link from "next/link";
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
+import { fetchCategories } from "api/api";
 
-export default function Index() {
+export default function Index({categories}) {
+  console.log("index page categories", categories);
   return (
     <>
-      <IndexNavbar fixed />
+      <IndexNavbar fixed  categories={categories}/>
       <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
         <div className="container mx-auto items-center flex flex-wrap">
           <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
@@ -531,9 +533,8 @@ export default function Index() {
 
 export async function getServerSideProps() {
   // Fetch data from external API
-  const res = await fetch(`https://.../data`)
-  const data = await res.json()
-
+  const {data: categories}= await fetchCategories();
+    
   // Pass data to the page via props
-  return { props: { categories:{ items:[],} } }
+  return { props: { categories:{ items:categories.data,} } }
 }

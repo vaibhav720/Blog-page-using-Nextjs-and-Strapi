@@ -3,8 +3,10 @@ import Link from "next/link";
 // components
 
 import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
+;
 
 export default function Navbar(props) {
+  console.log(props.categories.items[0].attributes);
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
     <>
@@ -35,42 +37,19 @@ export default function Navbar(props) {
             id="example-navbar-warning"
           >
             <ul className="flex flex-col lg:flex-row list-none mr-auto">
-              <li className="flex items-center">
+              {
+                props.categories.items.map(item=>(
+                  <li className="flex items-center">
                 <a
                   className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index-navbar"
+                  href={"/"+ item.attributes.Slug}
                 >
                   
-                  Sports Cars
+                  {item.attributes.Title}
                 </a>
               </li>
-              <li className="flex items-center">
-                <a
-                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index-navbar"
-                >
-                 
-                  Electric Cars
-                </a>
-              </li>
-              <li className="flex items-center">
-                <a
-                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index-navbar"
-                >
-                 
-                  Hyper Car
-                </a>
-              </li>
-              <li className="flex items-center">
-                <a
-                  className="hover:text-blueGray-500 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index-navbar"
-                >
-                 
-                  Formula 1
-                </a>
-              </li>
+                ))
+              }
             </ul>
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">
@@ -124,3 +103,5 @@ export default function Navbar(props) {
     </>
   );
 }
+
+
