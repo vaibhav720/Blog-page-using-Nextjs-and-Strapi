@@ -6,8 +6,63 @@ import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { fetchArticles, fetchCategories } from "api/api";
 
+// get the position of the string 
+function getPosition(string, subString, index) {
+  return string.split(subString, index).join(subString).length;
+}
+
+
 export default function Index({ categories, articles }) {
-  console.log("printing articles  ",articles.items)
+  let sections=[]
+  let sectionTitle=[];
+  for(let i=0;i<articles.items.length;i++)
+  {
+    let articlesSections = [];
+    
+    let articlesTitle = [];
+    let isTitle=false;
+    let temp="";
+    let temp1="";
+    for(let j=0;j<articles.items[i].attributes.Body.length;j++)
+    {
+      if(!isTitle && (articles.items[i].attributes.Body[j]!="#" || articles.items[i].attributes.Body[j]!="\\")){
+        if(temp1.length!==0)
+        {
+          console.log(temp1);
+          articlesTitle.push(temp1);
+          temp1="";
+        }
+        temp+=articles.items[i].attributes.Body[j];
+      }
+      else if(articles.items[i].attributes.Body[j]==="#" && articles.items[i].attributes.Body[j+3]==="#")
+      {
+        isTitle=true;
+        if(temp.length!==0)
+        {
+          articlesSections.push(temp);
+          temp="";
+        }
+        j=j+3;
+      }
+      else if(articles.items[i].attributes.Body[j+3]==="\\"){
+        temp1+=articles.items[i].attributes.Body[j];
+      }
+      else{
+        isTitle=false;
+      }
+    }
+    if(temp.length!==0)
+    {
+      articlesSections.push(temp);
+    }
+    if(temp1.length!==0)
+    {
+      articlesTitle.push(temp1);
+    }
+    sections.push(articlesSections);
+    console.log(articlesTitle);
+    sectionTitle.push(articlesTitle);
+  }
   return (
     <>
       <IndexNavbar fixed categories={categories} />
@@ -67,6 +122,111 @@ export default function Index({ categories, articles }) {
             ></polygon>
           </svg>
         </div>
+        {articles.items.map((item,index)=>(
+          <div className="container mx-auto">
+          <div className="flex flex-wrap items-center">
+            {/* TODO: Important Card  */}
+            <Link href="/register">
+              <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-32">
+                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blueGray-700 hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
+                  <img
+                    alt="..."
+                    src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
+                    className="w-full align-middle rounded-t-lg"
+                  />
+                  <blockquote className="relative p-8 mb-4">
+                    <svg
+                      preserveAspectRatio="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 583 95"
+                      className="absolute left-0 w-full block h-95-px -top-94-px"
+                    >
+                      <polygon
+                        points="-30,95 583,95 583,65"
+                        className="text-blueGray-700 fill-current"
+                      ></polygon>
+                    </svg>
+                    <h4 className="text-xl font-bold text-white">
+                      {item.attributes.Title}
+                    </h4>
+                    <p className="text-md font-light mt-2 text-white">
+                      {item.attributes.Body.substring(0,150)}
+                    </p>
+                  </blockquote>
+                </div>
+              </div>
+            </Link>
+
+            <div className="w-full md:w-6/12 px-4">
+              <div className="flex flex-wrap">
+                <div className="w-full md:w-6/12 px-4">
+                  <div className="relative flex flex-col mt-4">
+                    <div className="px-4 py-5 flex-auto">
+                      <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
+                        <i className="fas fa-sitemap"></i>
+                      </div>
+                      <h6 className="text-xl mb-1 font-semibold">{sectionTitle[index][1]}</h6>
+                      <p className="mb-4 text-blueGray-500">
+                        {sections[index][0].substring(0,90 )}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="relative flex flex-col min-w-0">
+                    <div className="px-4 py-5 flex-auto">
+                      <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
+                        <i class="fas fa-duotone fa-car-battery"></i>
+                      </div>
+                      <h6 className="text-xl mb-1 font-semibold">
+                        Performance
+                      </h6>
+                      <p className="mb-4 text-blueGray-500">
+                        We also feature many dynamic components for React,
+                        NextJS, Vue and Angular.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full md:w-6/12 px-4">
+                  <div className="relative flex flex-col min-w-0 mt-4">
+                    <div className="px-4 py-5 flex-auto">
+                      <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
+                        <i class="fas fa-solid fa-info"></i>
+                      </div>
+                      <h6 className="text-xl mb-1 font-semibold">
+                        Specification
+                      </h6>
+                      <p className="mb-4 text-blueGray-500">
+                        This extension also comes with 3 sample pages. They are
+                        fully coded so you can start working instantly.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="relative flex flex-col min-w-0">
+                    <div className="px-4 py-5 flex-auto">
+                      <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
+                        <i className="fas fa-file-alt"></i>
+                      </div>
+                      <h6 className="text-xl mb-1 font-semibold">Review</h6>
+                      <p className="mb-4 text-blueGray-500">
+                        Built by developers for developers. You will love how
+                        easy is to to work with Notus NextJS.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <a
+                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus?ref=nnjs-index"
+                  target="_blank"
+                  className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
+                >
+                  View More{" "}
+                  <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        ))}
         <div className="container mx-auto">
           <div className="flex flex-wrap items-center">
             {/* TODO: Important Card  */}
