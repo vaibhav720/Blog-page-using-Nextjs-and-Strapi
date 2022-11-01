@@ -2,3 +2,6 @@
 
 
 Used Next js and Typescript in frontend
+
+
+Used tailwind for 
