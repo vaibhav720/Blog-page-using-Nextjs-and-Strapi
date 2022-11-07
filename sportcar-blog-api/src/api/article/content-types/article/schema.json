@@ -50,6 +50,12 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "articles"
+    },
+    "subcatergories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::subcatergory.subcatergory",
+      "mappedBy": "article"
     }
   }
 }

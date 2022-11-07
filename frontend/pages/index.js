@@ -30,7 +30,7 @@ function Cards(props)
                 </p>
                 
                 <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus?ref=nnjs-index"
+                  href={"http://localhost:3000/category/".concat(props.attributes.Slug)}
                   target="_blank"
                   className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
                 >
@@ -80,7 +80,7 @@ function Cards(props)
                 </p>
                 
                 <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus?ref=nnjs-index"
+                  href={"http://localhost:3000/category/".concat(props.attributes.Slug)}
                   target="_blank"
                   className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
                 >
