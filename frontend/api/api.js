@@ -9,6 +9,11 @@ const api = axios.create({
     }
 });
 // all categories
-export const fetchCategories = async()=> api.get('/api/categories');
+export const fetchCategories = async()=>await api.get('/api/categories');
 // all articles
-export const fetchArticles = async()=> api.get('/api/articles');
+export const fetchArticles = async()=> await api.get('/api/articles?populate=*');
+
+// all sub categories of the article
+export const subCategory = async(queryString)=> await api.get('/api/subcatergories?filters[article][slug][$eq]='.concat(queryString,'&populate=*'));
+
+export const fetchArticlesWithCategory = async(queryString)=> await api.get('/api/articles?populate=*&filters[category][slug][$eq]='.concat(queryString));
