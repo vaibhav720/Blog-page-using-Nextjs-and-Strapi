@@ -2,6 +2,8 @@
 
 Used tailwind for CSS 
 
+![image](https://user-images.githubusercontent.com/56918464/201244105-777e2cf5-cbf8-4be8-a2ea-fc80e868ef37.png)
+
 ![image](https://user-images.githubusercontent.com/56918464/201243429-ec85b3e9-5e30-4f9c-8bed-72be38e92958.png)
 
 
