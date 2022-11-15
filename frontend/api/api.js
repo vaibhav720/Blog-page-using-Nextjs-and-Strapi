@@ -19,6 +19,8 @@ export const subCategory = async(queryString)=> await api.get('/api/subcatergori
 // all article of particular category
 export const fetchArticlesWithCategory = async(queryString)=> await api.get('/api/articles?populate=*&filters[category][slug][$eq]='.concat(queryString));
 
-
 //all fetch single article
 export const getArticle = async(queryString)=> await api.get('http://localhost:1337/api/articles?populate=*&filters[slug][$eq]='.concat(queryString));
+
+// sub categories of particular article
+export const getSubCategories = async(queryString)=> await api.get('http://localhost:1337/api/subcatergories?filters[article][slug][$eq]='.concat(queryString));
