@@ -5,14 +5,14 @@ import { useRouter } from 'next/router'
 
 import Navbar from "../../components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
+import { fetchArticles, fetchCategories, getArticle } from "api/api.js";
 
-export default function Landing() {
+export default function Landing({ categories, articles }) {
   const router = useRouter()
   const { pid } = router.query
-  console.log(" current pid of the the website ",router.query)
   return (
     <>
-      <Navbar transparent />
+      <Navbar transparent categories={categories} />
       <main>
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
@@ -672,3 +672,15 @@ export default function Landing() {
     </>
   );
 }
+
+export async function getServerSideProps(context) {
+  console.log("Vaibhav path",context.params.cars);
+   
+   // Fetch data from external API
+   const { data: categories } = await fetchCategories();
+   
+   const { data: articles } = await getArticle(context.params.cars);
+  
+   // Pass data to the page via props
+   return { props: { categories: { items: categories.data }, articles: {items:articles.data}} };
+ }

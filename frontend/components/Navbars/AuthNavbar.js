@@ -44,16 +44,20 @@ export default function Navbar(props) {
                   Docs
                 </a>
               </li>
+              {
+                props.categories.items.map(item=>(
               <li className="flex items-center">
                 <a
                   className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-auth-navbar"
+                  href={"/category/"+ item.attributes.Slug}
                 >
                   
-                  Sport cars
+                  {item.attributes.Title}
                 </a>
               </li>
-              <li className="flex items-center">
+               ))
+              }
+              {/* <li className="flex items-center">
                 <a
                   className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-auth-navbar"
@@ -79,7 +83,7 @@ export default function Navbar(props) {
                   
                   Others
                 </a>
-              </li>
+              </li> */}
             </ul>
             <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
               <li className="flex items-center">

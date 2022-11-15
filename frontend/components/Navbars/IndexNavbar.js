@@ -8,7 +8,6 @@ import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
 
 export default function Navbar(props) {
   
-  console.log(props.categories.items[0].attributes);
   const [navbarOpen, setNavbarOpen] = React.useState(false);
   return (
     <>

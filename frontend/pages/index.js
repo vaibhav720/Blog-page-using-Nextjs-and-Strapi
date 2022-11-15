@@ -114,7 +114,7 @@ export default function Index({ categories, articles }) {
       if(!isTitle && (articles.items[i].attributes.Body[j]!="#" || articles.items[i].attributes.Body[j]!="\\")){
         if(temp1.length!==0)
         {
-          console.log(temp1);
+         
           articlesTitle.push(temp1);
           temp1="";
         }
@@ -146,7 +146,7 @@ export default function Index({ categories, articles }) {
       articlesTitle.push(temp1);
     }
     sections.push(articlesSections);
-    console.log(articlesTitle);
+   
     sectionTitle.push(articlesTitle);
   }
   return (
@@ -164,14 +164,14 @@ export default function Index({ categories, articles }) {
               </p>
               <div className="mt-12">
                 <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index"
+                  href="#"
                   target="_blank"
                   className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-400 active:bg-blueGray-500 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
                 >
                   Get started
                 </a>
                 <a
-                  href="https://github.com/creativetimofficial/notus-nextjs?ref=nnjs-index"
+                  href="#"
                   className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blueGray-700 active:bg-blueGray-600 uppercase text-sm shadow hover:shadow-lg"
                   target="_blank"
                 >

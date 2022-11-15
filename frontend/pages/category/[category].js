@@ -1,15 +1,11 @@
 /* eslint-disable react/jsx-no-target-blank */
 import React from "react";
 import Link from "next/link";
-import {useRouter} from 'next/router';
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { fetchArticlesWithCategory, fetchCategories } from "api/api";
-import {withRouter} from 'next/router';
-// get the position of the string 
-function getPosition(string, subString, index) {
-  return string.split(subString, index).join(subString).length;
-}
+
+
 
 function Cards(props)
 {
@@ -672,13 +668,13 @@ export default function Index({ categories, articles }) {
   );
 }
 
-export async function getServerSideProps() {
- 
+export async function getServerSideProps(context) {
+ console.log("path ",context.params.category);
   
   // Fetch data from external API
   const { data: categories } = await fetchCategories();
   
-  const { data: articles } = await fetchArticlesWithCategory("electric-cars");
+  const { data: articles } = await fetchArticlesWithCategory(context.params.category);
   // Pass data to the page via props
   return { props: { categories: { items: categories.data }, articles: {items:articles.data}} };
 }
