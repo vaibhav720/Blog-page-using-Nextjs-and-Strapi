@@ -7,9 +7,6 @@ import Footer from "components/Footers/Footer.js";
 import { fetchArticles, fetchCategories } from "api/api";
 
 // get the position of the string 
-function getPosition(string, subString, index) {
-  return string.split(subString, index).join(subString).length;
-}
 
 function Cards(props)
 {
@@ -30,7 +27,7 @@ function Cards(props)
                 </p>
                 
                 <a
-                  href={"http://localhost:3000/category/".concat(props.attributes.Slug)}
+                  href={"http://localhost:3000/cars/".concat(props.attributes.Slug)}
                   target="_blank"
                   className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
                 >
@@ -80,7 +77,7 @@ function Cards(props)
                 </p>
                 
                 <a
-                  href={"http://localhost:3000/category/".concat(props.attributes.Slug)}
+                  href={"http://localhost:3000/cars/".concat(props.attributes.Slug)}
                   target="_blank"
                   className="font-bold text-blueGray-700 hover:text-blueGray-500 ease-linear transition-all duration-150"
                 >
@@ -542,35 +539,7 @@ export default function Index({ categories, articles }) {
                   </Link>
                 </div>
 
-                {/* <div className="w-full lg:w-4/12 px-4">
-                  <h5 className="text-xl font-semibold pb-4 text-center">
-                    Profile Page
-                  </h5>
-                  <Link href="/profile">
-                    <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                      <img
-                        alt="..."
-                        className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src="/img/profile.jpg"
-                      />
-                    </div>
-                  </Link>
-                </div>
-
-                <div className="w-full lg:w-4/12 px-4">
-                  <h5 className="text-xl font-semibold pb-4 text-center">
-                    Landing Page
-                  </h5>
-                  <Link href="/landing">
-                    <div className="hover:-mt-4 relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg ease-linear transition-all duration-150">
-                      <img
-                        alt="..."
-                        className="align-middle border-none max-w-full h-auto rounded-lg"
-                        src="/img/landing.jpg"
-                      />
-                    </div>
-                  </Link>
-                </div> */}
+                
               </div>
             </div>
           </div>
