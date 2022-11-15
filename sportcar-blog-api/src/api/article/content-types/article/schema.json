@@ -56,6 +56,26 @@
       "relation": "oneToMany",
       "target": "api::subcatergory.subcatergory",
       "mappedBy": "article"
+    },
+    "Rating": {
+      "type": "enumeration",
+      "enum": [
+        "One Star",
+        "Two Star",
+        "Three Star",
+        "Four Star",
+        "Five Star",
+        "No Rating"
+      ],
+      "default": "No Rating",
+      "required": true
+    },
+    "Price": {
+      "type": "integer"
+    },
+    "Highlights": {
+      "type": "richtext",
+      "maxLength": 200
     }
   }
 }
