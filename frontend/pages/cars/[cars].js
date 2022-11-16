@@ -9,7 +9,11 @@ import { fetchCategories, getArticle, getSubCategories } from "api/api.js";
 
 function Cards(props) {
   let data = [];
-  console.log("printing the image ",props.subCategories.items[0].attributes.SubImage.data[0].attributes.formats.large.url);
+  console.log(
+    "printing the image ",
+    props.subCategories.items[0].attributes.SubImage.data[0].attributes.formats
+      .large.url
+  );
   props.subCategories.items.map((item, index) => {
     if (index % 2 === 0) {
       data.push(
@@ -19,7 +23,9 @@ function Cards(props) {
               <img
                 alt="..."
                 className="max-w-full rounded-lg shadow-lg"
-                src={item.attributes.SubImage.data[0].attributes.formats.large.url}
+                src={"http://localhost:1337".concat(
+                  item.attributes.SubImage.data[0].attributes.formats.large.url
+                )}
               />
             </div>
             <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
@@ -27,11 +33,12 @@ function Cards(props) {
                 <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-blueGray-200">
                   <i className="fas fa-rocket text-xl"></i>
                 </div>
-                <h3 className="text-3xl font-semibold">{item.attributes.SubTitle}</h3>
+                <h3 className="text-3xl font-semibold">
+                  {item.attributes.SubTitle}
+                </h3>
                 <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                  {item.attributes.details.substring(0,480)}
+                  {item.attributes.details.substring(0, 480)}
                 </p>
-                
               </div>
             </div>
           </div>
@@ -44,14 +51,14 @@ function Cards(props) {
             <div className="w-full md:w-5/12 ml-auto px-12 md:px-4">
               <div className="md:pr-12">
                 <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
-                  <i class="fas fa-solid fa-gauge-high"></i>
+                <i class="fas fa-solid fa-car-battery"></i>
                 </div>
-                <h3 className="text-3xl font-semibold">{item.attributes.SubTitle}</h3>
+                <h3 className="text-3xl font-semibold">
+                  {item.attributes.SubTitle}
+                </h3>
                 <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                {item.attributes.details.substring(0,300)}
+                  {item.attributes.details.substring(0, 300)}
                 </p>
-                
-                
               </div>
             </div>
 
@@ -63,7 +70,9 @@ function Cards(props) {
                   transform:
                     "scale(1) perspective(1040px) rotateY(-11deg) rotateX(2deg) rotate(2deg)",
                 }}
-                src="/img/bugatti-boldie.jpg"
+                src={"http://localhost:1337".concat(
+                  item.attributes.SubImage.data[0].attributes.formats.large.url
+                )}
               />
             </div>
           </div>
@@ -77,39 +86,29 @@ function Cards(props) {
 export default function Landing({ categories, articles, subCategories }) {
   const router = useRouter();
   const { pid } = router.query;
-  let rating=[];
-  if(articles.items[0].attributes.Rating==="Five Star")
-  {
-    rating.push(<i className="text-yellow-100 fas fa-star"></i>)
-    rating.push(<i class="fas fa-solid fa-star "></i>)
-    rating.push(<i class="fas fa-solid fa-star "></i>)
-    rating.push(<i class="fas fa-solid fa-star "></i>)
-    rating.push(<i class="fas fa-solid fa-star "></i>)
-  }
-  else if(articles.items[0].attributes.Rating==="Four Star")
-  {
-    rating.push(<i class="fas fa-solid fa-star"></i>)
-    rating.push(<i class="fas fa-solid fa-star"></i>)
-    rating.push(<i class="fas fa-solid fa-star"></i>)
-    rating.push(<i class="fas fa-solid fa-star"></i>)
-  }
-  else if(articles.items[0].attributes.Rating==="Three Star")
-  {
-    rating.push(<i class="fas fa-solid fa-star"></i>)
-    rating.push(<i class="fas fa-solid fa-star"></i>)
-    rating.push(<i class="fas fa-solid fa-star"></i>)
-  }
-  else if(articles.items[0].attributes.Rating==="Two Star")
-  {
-    rating.push(<i class="fas fa-solid fa-star"></i>)
-    rating.push(<i class="fas fa-solid fa-star"></i>)
-  }
-  else if(articles.items[0].attributes.Rating==="No Star")
-  {
-    rating.push(<i class="fas fa-solid fa-star"></i>)
-  }
-  else{
-    rating.push("No Rating provided")
+  let rating = [];
+  if (articles.items[0].attributes.Rating === "Five Star") {
+    rating.push(<i className="text-yellow-100 fas fa-star"></i>);
+    rating.push(<i class="fas fa-solid fa-star "></i>);
+    rating.push(<i class="fas fa-solid fa-star "></i>);
+    rating.push(<i class="fas fa-solid fa-star "></i>);
+    rating.push(<i class="fas fa-solid fa-star "></i>);
+  } else if (articles.items[0].attributes.Rating === "Four Star") {
+    rating.push(<i class="fas fa-solid fa-star"></i>);
+    rating.push(<i class="fas fa-solid fa-star"></i>);
+    rating.push(<i class="fas fa-solid fa-star"></i>);
+    rating.push(<i class="fas fa-solid fa-star"></i>);
+  } else if (articles.items[0].attributes.Rating === "Three Star") {
+    rating.push(<i class="fas fa-solid fa-star"></i>);
+    rating.push(<i class="fas fa-solid fa-star"></i>);
+    rating.push(<i class="fas fa-solid fa-star"></i>);
+  } else if (articles.items[0].attributes.Rating === "Two Star") {
+    rating.push(<i class="fas fa-solid fa-star"></i>);
+    rating.push(<i class="fas fa-solid fa-star"></i>);
+  } else if (articles.items[0].attributes.Rating === "No Star") {
+    rating.push(<i class="fas fa-solid fa-star"></i>);
+  } else {
+    rating.push("No Rating provided");
   }
   return (
     <>
@@ -166,7 +165,7 @@ export default function Landing({ categories, articles, subCategories }) {
         <section className="pb-20 bg-blueGray-200 -mt-24">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap">
-              <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+              {/* <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
@@ -178,27 +177,48 @@ export default function Landing({ categories, articles, subCategories }) {
                     </p>
                   </div>
                 </div>
-              </div>
-
+              </div> */}
               <div className="w-full md:w-4/12 px-4 text-center">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
-                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400">
-                      <i className="fas fa-retweet"></i>
+                  <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
+                      <i className="fas fa-award"></i>
+                    </div>
+                    <h6 className="text-xl font-semibold">HighLights</h6>
+                    <p className="mt-2 mb-4 text-blueGray-500">{articles.items[0].attributes.Highlights}</p>
+                  </div>
+                </div>
+              </div>
+              <div className="w-full md:w-4/12 px-4 text-center">
+                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                  <div className="px-4 py-5 flex-auto">
+                  <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
+                      <i className="fas fa-fingerprint"></i>
                     </div>
                     <h6 className="text-xl font-semibold">Rating</h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">
-                      {rating}
-                    </p>
+                    <p className="mt-2 mb-4 text-blueGray-500">{rating}</p>
                   </div>
                 </div>
               </div>
 
-              <div className="pt-6 w-full md:w-4/12 px-4 text-center">
+              {/* <div className="pt-6 w-full md:w-4/12 px-4 text-center">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
                     <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
                       <i className="fas fa-fingerprint"></i>
+                    </div>
+                    <h6 className="text-xl font-semibold">Price</h6>
+                    <p className="mt-2 mb-4 text-blueGray-500">
+                      {articles.items[0].attributes.Price} $
+                    </p>
+                  </div>
+                </div>
+              </div> */}
+               <div className="w-full md:w-4/12 px-4 text-center">
+                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+                  <div className="px-4 py-5 flex-auto">
+                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-lightBlue-400">
+                      <i className="fas fa-retweet"></i>
                     </div>
                     <h6 className="text-xl font-semibold">Price</h6>
                     <p className="mt-2 mb-4 text-blueGray-500">
@@ -213,30 +233,30 @@ export default function Landing({ categories, articles, subCategories }) {
               <div className="w-full md:w-5/12 ml-auto px-12 md:px-4">
                 <div className="md:pr-12">
                   <div className="text-blueGray-500 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
-                    <i class="fas fa-solid fa-gauge-high"></i>
+                  <i class="fas fa-car"></i>
                   </div>
                   <h3 className="text-3xl font-semibold">
                     {articles.items[0].attributes.Title}
                   </h3>
                   <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
-                   All the Subcategories from which the data is divided is:
+                    All the Subcategories from which the data is divided is:
                   </p>
                   <ul className="list-none mt-6">
                     {subCategories.items.map((item) => {
-                    <li className="py-2">
-                      <div className="flex items-center">
-                        <div>
-                          <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-blueGray-50 mr-3">
-                            <i className="fas fa-fingerprint"></i>
-                          </span>
+                      <li className="py-2">
+                        <div className="flex items-center">
+                          <div>
+                            <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-blueGray-500 bg-blueGray-50 mr-3">
+                              <i className="fas fa-fingerprint"></i>
+                            </span>
+                          </div>
+                          <div>
+                            <h4 className="text-blueGray-500">
+                              {item.attributes.SubTitle}
+                            </h4>
+                          </div>
                         </div>
-                        <div>
-                          <h4 className="text-blueGray-500">
-                            {item.attributes.SubTitle}
-                          </h4>
-                        </div>
-                      </div>
-                    </li>
+                      </li>;
                     })}
                     <li className="py-2">
                       <div className="flex items-center">
@@ -278,7 +298,10 @@ export default function Landing({ categories, articles, subCategories }) {
                     transform:
                       "scale(1) perspective(1040px) rotateY(-11deg) rotateX(2deg) rotate(2deg)",
                   }}
-                  src="/img/bugatti-boldie.jpg"
+                  src={"http://localhost:1337".concat(
+                    articles.items[0].attributes.Image.data.attributes.formats
+                      .large.url
+                  )}
                 />
               </div>
             </div>
@@ -307,8 +330,6 @@ export default function Landing({ categories, articles, subCategories }) {
           </div>
 
           <Cards subCategories={subCategories} />
-          
-
         </section>
 
         <section className="pb-20 relative block bg-blueGray-800">
@@ -336,12 +357,10 @@ export default function Landing({ categories, articles, subCategories }) {
             <div className="flex flex-wrap text-center justify-center">
               <div className="w-full lg:w-6/12 px-4">
                 <h2 className="text-4xl font-semibold text-white">
-                  Build something
+                  What to know more??
                 </h2>
                 <p className="text-lg leading-relaxed mt-4 mb-4 text-blueGray-400">
-                  Put the potentially record low maximum sea ice extent this
-                  year down to low ice. According to the National Oceanic and
-                  Atmospheric Administration, Ted, Scambos.
+                  Get monthly updates on email.
                 </p>
               </div>
             </div>
@@ -354,8 +373,7 @@ export default function Landing({ categories, articles, subCategories }) {
                   Excellent Services
                 </h6>
                 <p className="mt-2 mb-4 text-blueGray-400">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  Know about the latest cars.
                 </p>
               </div>
               <div className="w-full lg:w-3/12 px-4 text-center">
@@ -363,7 +381,7 @@ export default function Landing({ categories, articles, subCategories }) {
                   <i className="fas fa-poll text-xl"></i>
                 </div>
                 <h5 className="text-xl mt-5 font-semibold text-white">
-                  Grow your market
+                  New collection every few months
                 </h5>
                 <p className="mt-2 mb-4 text-blueGray-400">
                   Some quick example text to build on the card title and make up
@@ -375,11 +393,10 @@ export default function Landing({ categories, articles, subCategories }) {
                   <i className="fas fa-lightbulb text-xl"></i>
                 </div>
                 <h5 className="text-xl mt-5 font-semibold text-white">
-                  Launch time
+                  You can also contribute
                 </h5>
                 <p className="mt-2 mb-4 text-blueGray-400">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
+                  Write you review about particular car and get the views. 
                 </p>
               </div>
             </div>
@@ -392,7 +409,7 @@ export default function Landing({ categories, articles, subCategories }) {
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
                   <div className="flex-auto p-5 lg:p-10">
                     <h4 className="text-2xl font-semibold">
-                      Want to work with us?
+                      Want to sign up for updates
                     </h4>
                     <p className="leading-relaxed mt-1 mb-4 text-blueGray-500">
                       Complete this form and we will get back to you in 24
@@ -431,7 +448,7 @@ export default function Landing({ categories, articles, subCategories }) {
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="message"
                       >
-                        Message
+                        Review
                       </label>
                       <textarea
                         rows="4"
