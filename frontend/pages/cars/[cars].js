@@ -9,16 +9,11 @@ import { fetchCategories, getArticle, getSubCategories } from "api/api.js";
 
 function Cards(props) {
   let data = [];
-  console.log(
-    "printing the image ",
-    props.subCategories.items[0].attributes.SubImage.data[0].attributes.formats
-      .large.url
-  );
   props.subCategories.items.map((item, index) => {
     if (index % 2 === 0) {
       data.push(
-        <div className="container mx-auto px-4">
-          <div className="items-center flex flex-wrap">
+        <div className="container mx-auto px-4" key={index}>
+          <div className="items-center flex flex-wrap" >
             <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
               <img
                 alt="..."
@@ -46,7 +41,7 @@ function Cards(props) {
       );
     } else {
       data.push(
-        <div className="container mx-auto px-4 pb-32 pt-48">
+        <div className="container mx-auto px-4 pb-32 pt-48" key={index}>
           <div className="items-center flex flex-wrap">
             <div className="w-full md:w-5/12 ml-auto px-12 md:px-4">
               <div className="md:pr-12">
@@ -83,33 +78,39 @@ function Cards(props) {
   return data;
 }
 
-export default function Landing({ categories, articles, subCategories }) {
-  const router = useRouter();
-  const { pid } = router.query;
-  let rating = [];
-  if (articles.items[0].attributes.Rating === "Five Star") {
+function getRatings(provided)
+{
+  let rating=[];
+  if (provided === "Five Star") {
     rating.push(<i className="text-yellow-100 fas fa-star"></i>);
     rating.push(<i class="fas fa-solid fa-star "></i>);
     rating.push(<i class="fas fa-solid fa-star "></i>);
     rating.push(<i class="fas fa-solid fa-star "></i>);
     rating.push(<i class="fas fa-solid fa-star "></i>);
-  } else if (articles.items[0].attributes.Rating === "Four Star") {
+  } else if (provided === "Four Star") {
     rating.push(<i class="fas fa-solid fa-star"></i>);
     rating.push(<i class="fas fa-solid fa-star"></i>);
     rating.push(<i class="fas fa-solid fa-star"></i>);
     rating.push(<i class="fas fa-solid fa-star"></i>);
-  } else if (articles.items[0].attributes.Rating === "Three Star") {
+  } else if (provided === "Three Star") {
     rating.push(<i class="fas fa-solid fa-star"></i>);
     rating.push(<i class="fas fa-solid fa-star"></i>);
     rating.push(<i class="fas fa-solid fa-star"></i>);
-  } else if (articles.items[0].attributes.Rating === "Two Star") {
+  } else if (provided=== "Two Star") {
     rating.push(<i class="fas fa-solid fa-star"></i>);
     rating.push(<i class="fas fa-solid fa-star"></i>);
-  } else if (articles.items[0].attributes.Rating === "No Star") {
+  } else if (provided === "One Star") {
     rating.push(<i class="fas fa-solid fa-star"></i>);
   } else {
     rating.push("No Rating provided");
   }
+  return rating;
+}
+export default function Landing({ categories, articles, subCategories }) {
+  const router = useRouter();
+  const { pid } = router.query;
+  let rating = getRatings(articles.items[0].attributes.Rating);
+ 
   return (
     <>
       <Navbar transparent categories={categories} />
