@@ -95,7 +95,8 @@ function Cards(props)
 
 export default function Index({ categories, articles }) {
   const router = useRouter()
-  const { pid } = router.query
+  const { category } = router.query
+  console.log(router.query);
   let sections=[]
   let sectionTitle=[];
   for(let i=0;i<articles.items.length;i++)
@@ -153,7 +154,7 @@ export default function Index({ categories, articles }) {
           <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
             <div className="pt-32 sm:pt-0">
               <h2 className="font-semibold text-4xl text-blueGray-600">
-                Welcome to VP Cars, left use router
+                Welcome to VP Cars, {category} Category
               </h2>
               <p className="mt-4 text-lg leading-relaxed text-blueGray-500">
                 It will provide review about the some of the sports cars.

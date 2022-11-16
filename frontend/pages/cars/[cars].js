@@ -106,9 +106,11 @@ function getRatings(provided)
   }
   return rating;
 }
+
 export default function Landing({ categories, articles, subCategories }) {
   const router = useRouter();
-  const { pid } = router.query;
+  const { cars } = router.query;
+  console.log(cars);
   let rating = getRatings(articles.items[0].attributes.Rating);
  
   return (
