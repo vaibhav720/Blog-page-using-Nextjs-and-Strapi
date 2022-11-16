@@ -9,7 +9,7 @@ import { fetchCategories, getArticle, getSubCategories } from "api/api.js";
 
 function Cards(props) {
   let data = [];
-  console.log(props.subCategories.items);
+  console.log("printing the image ",props.subCategories.items[0].attributes.SubImage.data[0].attributes.formats.large.url);
   props.subCategories.items.map((item, index) => {
     if (index % 2 === 0) {
       data.push(
@@ -19,7 +19,7 @@ function Cards(props) {
               <img
                 alt="..."
                 className="max-w-full rounded-lg shadow-lg"
-                src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+                src={item.attributes.SubImage.data[0].attributes.formats.large.url}
               />
             </div>
             <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
@@ -77,6 +77,40 @@ function Cards(props) {
 export default function Landing({ categories, articles, subCategories }) {
   const router = useRouter();
   const { pid } = router.query;
+  let rating=[];
+  if(articles.items[0].attributes.Rating==="Five Star")
+  {
+    rating.push(<i className="text-yellow-100 fas fa-star"></i>)
+    rating.push(<i class="fas fa-solid fa-star "></i>)
+    rating.push(<i class="fas fa-solid fa-star "></i>)
+    rating.push(<i class="fas fa-solid fa-star "></i>)
+    rating.push(<i class="fas fa-solid fa-star "></i>)
+  }
+  else if(articles.items[0].attributes.Rating==="Four Star")
+  {
+    rating.push(<i class="fas fa-solid fa-star"></i>)
+    rating.push(<i class="fas fa-solid fa-star"></i>)
+    rating.push(<i class="fas fa-solid fa-star"></i>)
+    rating.push(<i class="fas fa-solid fa-star"></i>)
+  }
+  else if(articles.items[0].attributes.Rating==="Three Star")
+  {
+    rating.push(<i class="fas fa-solid fa-star"></i>)
+    rating.push(<i class="fas fa-solid fa-star"></i>)
+    rating.push(<i class="fas fa-solid fa-star"></i>)
+  }
+  else if(articles.items[0].attributes.Rating==="Two Star")
+  {
+    rating.push(<i class="fas fa-solid fa-star"></i>)
+    rating.push(<i class="fas fa-solid fa-star"></i>)
+  }
+  else if(articles.items[0].attributes.Rating==="No Star")
+  {
+    rating.push(<i class="fas fa-solid fa-star"></i>)
+  }
+  else{
+    rating.push("No Rating provided")
+  }
   return (
     <>
       <Navbar transparent categories={categories} />
@@ -154,7 +188,7 @@ export default function Landing({ categories, articles, subCategories }) {
                     </div>
                     <h6 className="text-xl font-semibold">Rating</h6>
                     <p className="mt-2 mb-4 text-blueGray-500">
-                      {articles.items[0].attributes.Rating}
+                      {rating}
                     </p>
                   </div>
                 </div>
