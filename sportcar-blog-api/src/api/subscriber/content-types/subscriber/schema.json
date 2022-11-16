@@ -4,7 +4,8 @@
   "info": {
     "singularName": "subscriber",
     "pluralName": "subscribers",
-    "displayName": "Subscriber"
+    "displayName": "Subscriber",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,12 @@
     },
     "Email": {
       "type": "email"
+    },
+    "category": {
+      "type": "string"
+    },
+    "car": {
+      "type": "string"
     }
   }
 }

@@ -9,7 +9,6 @@ import Footer from "components/Footers/Footer.js";
 export default function Landing() {
   return (
     <>
-      <Navbar transparent />
       <main>
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
