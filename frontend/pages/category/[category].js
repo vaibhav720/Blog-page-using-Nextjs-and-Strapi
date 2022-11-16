@@ -44,7 +44,7 @@ function Cards(props)
                   transform:
                     "scale(1) perspective(1040px) rotateY(-11deg) rotateX(2deg) rotate(2deg)",
                 }}
-                src="/img/bugatti-boldie.jpg"
+                src={"http://localhost:1337".concat(props.attributes.Image.data.attributes.formats.large.url)}
               />
             </div>
           </div>
@@ -62,7 +62,7 @@ function Cards(props)
                   transform:
                     "scale(1) perspective(1040px) rotateY(-11deg) rotateX(2deg) rotate(2deg)",
                 }}
-                src="/img/bugatti-boldie.jpg"
+                src={"http://localhost:1337".concat(props.attributes.Image.data.attributes.formats.large.url)}
               />
             </div>
             <div className="w-full md:w-5/12 ml-auto px-12 md:px-4">
