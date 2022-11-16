@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Navbar from "../../components/Navbars/AuthNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import { fetchCategories, getArticle, getSubCategories } from "api/api.js";
+import { postSubscriber } from "api/post.js";
 
 function Cards(props) {
   let data = [];
@@ -110,9 +111,23 @@ function getRatings(provided)
 export default function Landing({ categories, articles, subCategories }) {
   const router = useRouter();
   const { cars } = router.query;
-  console.log(cars);
   let rating = getRatings(articles.items[0].attributes.Rating);
- 
+  const handleClick = async (event) => {
+    event.preventDefault()
+    let data={
+      "data":{
+        "Name":event.target.Name.value,
+        "Email":event.target.Email.value,
+        "Message":event.target.Review.value,
+        "category":articles.items[0].attributes.category.data.attributes.Slug,
+        "car":articles.items[0].attributes.Slug
+      }
+    }
+    console.log(data);
+    const JSONdata = JSON.stringify(data)
+    const resp = await postSubscriber(JSONdata);
+    console.log(resp);
+  }
   return (
     <>
       <Navbar transparent categories={categories} />
@@ -168,19 +183,7 @@ export default function Landing({ categories, articles, subCategories }) {
         <section className="pb-20 bg-blueGray-200 -mt-24">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap">
-              {/* <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                  <div className="px-4 py-5 flex-auto">
-                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
-                      <i className="fas fa-award"></i>
-                    </div>
-                    <h6 className="text-xl font-semibold">HighLights</h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">
-                      {articles.items[0].attributes.Highlights}
-                    </p>
-                  </div>
-                </div>
-              </div> */}
+              
               <div className="w-full md:w-4/12 px-4 text-center">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
@@ -204,19 +207,7 @@ export default function Landing({ categories, articles, subCategories }) {
                 </div>
               </div>
 
-              {/* <div className="pt-6 w-full md:w-4/12 px-4 text-center">
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-                  <div className="px-4 py-5 flex-auto">
-                    <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-emerald-400">
-                      <i className="fas fa-fingerprint"></i>
-                    </div>
-                    <h6 className="text-xl font-semibold">Price</h6>
-                    <p className="mt-2 mb-4 text-blueGray-500">
-                      {articles.items[0].attributes.Price} $
-                    </p>
-                  </div>
-                </div>
-              </div> */}
+             
                <div className="w-full md:w-4/12 px-4 text-center">
                 <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
                   <div className="px-4 py-5 flex-auto">
@@ -410,6 +401,7 @@ export default function Landing({ categories, articles, subCategories }) {
             <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
+                <form onSubmit={handleClick}>
                   <div className="flex-auto p-5 lg:p-10">
                     <h4 className="text-2xl font-semibold">
                       Want to sign up for updates
@@ -429,6 +421,7 @@ export default function Landing({ categories, articles, subCategories }) {
                         type="text"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Full Name"
+                        id="Name" name="Name" required
                       />
                     </div>
 
@@ -436,6 +429,7 @@ export default function Landing({ categories, articles, subCategories }) {
                       <label
                         className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
                         htmlFor="email"
+                        
                       >
                         Email
                       </label>
@@ -443,6 +437,7 @@ export default function Landing({ categories, articles, subCategories }) {
                         type="email"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
                         placeholder="Email"
+                        id="Email" name="Email" required
                       />
                     </div>
 
@@ -458,18 +453,21 @@ export default function Landing({ categories, articles, subCategories }) {
                         cols="80"
                         className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full"
                         placeholder="Type a message..."
+                        id="Review" name="Review" required
                       />
                     </div>
                     <div className="text-center mt-6">
                       <button
                         className="bg-blueGray-800 text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        type="button"
+                        type="submit"
                       >
                         Send Message
                       </button>
                     </div>
                   </div>
+                  </form>
                 </div>
+              
               </div>
             </div>
           </div>

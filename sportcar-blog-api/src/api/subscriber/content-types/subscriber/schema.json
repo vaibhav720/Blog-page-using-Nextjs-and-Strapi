@@ -23,6 +23,9 @@
     },
     "car": {
       "type": "string"
+    },
+    "Message": {
+      "type": "text"
     }
   }
 }
