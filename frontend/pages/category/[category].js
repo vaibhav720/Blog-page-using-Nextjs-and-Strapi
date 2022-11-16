@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 
 function Cards(props)
 {
+  console.log(props.attributes.Image.data.attributes.formats.large.url)
   if(props.isLeft)
   {
     return(
