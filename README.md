@@ -1,4 +1,4 @@
-# Blog page using Strapi and react js
+# Blog page using Strapi and next js
 
 Used tailwind for CSS 
 
